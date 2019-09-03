@@ -30,7 +30,7 @@ export const tvApi = {
     topRated : () => api.get("tv/top_rated"),
     airingToday : () => api.get("tv/airing_today"),
     popular: () => api.get("tv/popular"),
-    tvDetail: id => 
+    showDetail: id => 
         api.get(`tv/${id}`,{
             params: {
                 append_to_response: "videos"

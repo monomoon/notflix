@@ -3,9 +3,11 @@ import DetailPresenter from "./DetailPresenter";
 import { movieApi, tvApi } from "../../api";
 
 export default class extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    const {location:{ pathname }} = props;
+    const {
+      location: { pathname }
+    } = props;
     this.state = {
       result: null,
       error: null,
@@ -14,7 +16,6 @@ export default class extends React.Component {
     };
   }
 
-  //check url :id and if it's not a number push to home url
   async componentDidMount() {
     const {
       match: {
@@ -30,9 +31,9 @@ export default class extends React.Component {
     let result = null;
     try {
       if (isMovie) {
-        ({data: result} = await movieApi.movieDetail(parsedId));
+        ({ data: result } = await movieApi.movieDetail(parsedId));
       } else {
-        ({data: result}= await tvApi.showDetail(parsedId));
+        ({ data: result } = await tvApi.showDetail(parsedId));
       }
     } catch {
       this.setState({ error: "Can't find anything." });
@@ -41,9 +42,7 @@ export default class extends React.Component {
     }
   }
 
-  
   render() {
-    console.log(this.state);
     const { result, error, loading } = this.state;
     return <DetailPresenter result={result} error={error} loading={loading} />;
   }
